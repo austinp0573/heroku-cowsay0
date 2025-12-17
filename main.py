@@ -28,7 +28,11 @@ def draw_cow(message: str = "Moo", character: str = "default"):
     <html>
       <body>
         <pre>{output}</pre>
-        <a href="/landing"><button>DO IT AGAIN!!! YAY!!!</button></a>
+        <a href="/landing"><button>DO IT AGAIN!!! YAY!!!</button></a><br>
+        <br><br>
+        <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
+        <br><br>
+        466f724a616e6574
       </body>
     </html>
     """
