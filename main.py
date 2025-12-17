@@ -27,12 +27,20 @@ def draw_cow(message: str = "Moo", character: str = "default"):
     return f"""
     <html>
       <body>
-        <pre>{output}</pre>
+        <pre id="cowsay-output">{output}</pre>
+        <button onclick="copyToClipboard()">COPY YOUR CREATION!!!</button>
+        <br><br>
         <a href="/landing"><button>DO IT AGAIN!!! YAY!!!</button></a><br>
         <br><br>
         <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
         <br><br>
         466f724a616e6574
+        <script>
+        function copyToClipboard() {{
+            const text = document.getElementById('cowsay-output').innerText;
+            navigator.clipboard.writeText(text);
+        }}
+        </script>
       </body>
     </html>
     """
