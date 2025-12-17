@@ -1,3 +1,18 @@
+# Copyright (C) 2025 Austin P.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse, HTMLResponse, RedirectResponse
 import cowsay as cs
@@ -31,6 +46,8 @@ def draw_cow(message: str = "Moo", character: str = "default"):
         <button onclick="copyToClipboard()">COPY YOUR CREATION!!!</button>
         <br><br>
         <a href="/landing"><button>DO IT AGAIN!!! YAY!!!</button></a><br>
+        <br><br>
+        <a href='https://austinp0573/austinp0573/heroku-cowsay' target='_blank'>Project Repository</a>
         <br><br>
         <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
         <br><br>
