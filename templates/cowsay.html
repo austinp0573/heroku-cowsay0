@@ -2,25 +2,88 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ character }} says {{ message }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: monospace;
+            overflow-x: hidden;
+        }
+        #cowsay-container {
+            width: 100%;
+            overflow: hidden;
+        }
+        #cowsay-output {
+            display: inline-block;
+            margin: 0;
+            white-space: pre;
+            font-family: monospace;
+            transform-origin: top left;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+            margin: 5px 0;
+        }
+        a {
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+        }
+    </style>
 </head>
 <body>
-    <pre id="cowsay-output">{{ output }}</pre>
-    <button onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
-    <br><br>
-    <a href="/"><button>GO BACK and MAKE A NEW ONE</button></a><br>
-    <br><br>
-    <a href='https://github.com/austinp0573/heroku-cowsay0' target='_blank'>Project Repository</a>
-    <br><br>
-    <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
-    <br><br>
-    466f724a616e6574
+    <div id="cowsay-container">
+        <pre id="cowsay-output">{{ output }}</pre>
+    </div>
+    <div class="controls">
+        <button onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
+        <br><br>
+        <a href="/"><button>GO BACK and MAKE A NEW ONE</button></a><br>
+        <br><br>
+        <a href='https://github.com/austinp0573/heroku-cowsay0' target='_blank'>Project Repository</a>
+        <br><br>
+        <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
+        <br><br>
+        466f724a616e6574
+    </div>
     <script>
     function copyToClipboard() {
         const text = document.getElementById('cowsay-output').innerText;
         navigator.clipboard.writeText(text);
     }
+
+    function scaleAsciiArt() {
+        const pre = document.getElementById('cowsay-output');
+        const container = document.getElementById('cowsay-container');
+        const controls = document.querySelector('.controls');
+        
+        const preWidth = pre.scrollWidth;
+        const viewportWidth = window.innerWidth - 20;
+        const controlsHeight = controls.offsetHeight;
+        const availableHeight = window.innerHeight - controlsHeight - 40;
+        const preHeight = pre.scrollHeight;
+        
+        if (preWidth > viewportWidth || preHeight > availableHeight) {
+            const widthScale = viewportWidth / preWidth;
+            const heightScale = availableHeight / preHeight;
+            const scale = Math.min(widthScale, heightScale, 1);
+            pre.style.transform = `scale(${scale})`;
+            container.style.height = `${preHeight * scale}px`;
+        } else {
+            const scale = Math.min(viewportWidth / preWidth, 1.5);
+            if (scale > 1) {
+                pre.style.transform = `scale(${scale})`;
+                container.style.height = `${preHeight * scale}px`;
+            }
+        }
+    }
+
+    window.addEventListener('load', scaleAsciiArt);
+    window.addEventListener('resize', scaleAsciiArt);
     </script>
 </body>
 </html>
-

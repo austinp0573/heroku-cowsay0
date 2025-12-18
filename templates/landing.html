@@ -2,7 +2,37 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cowsay as a Service</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: monospace;
+        }
+        h1 {
+            font-size: clamp(1.2rem, 5vw, 2rem);
+        }
+        form {
+            max-width: 100%;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+        select, input[type="text"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Cowsay as a Service</h1>
@@ -21,4 +51,3 @@
     </form>
 </body>
 </html>
-

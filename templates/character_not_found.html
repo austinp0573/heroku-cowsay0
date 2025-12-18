@@ -2,11 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Not Found</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: monospace;
+        }
+        p {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            word-wrap: break-word;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+    </style>
 </head>
 <body>
     <p>Character not found. Try: {{ available_characters }}</p>
     <a href="/"><button>Back to landing</button></a>
 </body>
 </html>
-
