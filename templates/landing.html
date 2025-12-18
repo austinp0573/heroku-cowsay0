@@ -74,17 +74,17 @@
 <body>
     <h1>Cowsay as a Service</h1>
     <form action="/cowsay" method="get">
-        <label for="character">Character:</label>
+        <label for="character">Select a Character:</label>
         <select name="character" id="character">
             {% for cow in characters %}
             <option value="{{ cow }}" {% if cow == 'stegosaurus' %}selected{% endif %}>{{ cow }}</option>
             {% endfor %}
         </select>
         <br><br>
-        <label for="message">Message:</label>
-        <input type="text" id="message" name="message" value="Hello!">
+        <label for="message">What would you like it to say:</label>
+        <input type="text" id="message" name="message" value="So many questionable life choices...">
         <br><br>
-        <input type="submit" value="Say!">
+        <input type="submit" value="Sha-Zam!">
     </form>
     <script>
         window.addEventListener('load', function() {
