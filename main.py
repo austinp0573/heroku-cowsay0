@@ -43,11 +43,11 @@ def draw_cow(message: str = "Moo", character: str = "default"):
     <html>
       <body>
         <pre id="cowsay-output">{output}</pre>
-        <button onclick="copyToClipboard()">COPY YOUR CREATION!!!</button>
+        <button onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
         <br><br>
-        <a href="/landing"><button>DO IT AGAIN!!! YAY!!!</button></a><br>
+        <a href="/landing"><button>GO BACK and MAKE A NEW ONE</button></a><br>
         <br><br>
-        <a href='https://austinp0573/austinp0573/heroku-cowsay' target='_blank'>Project Repository</a>
+        <a href='https://github.com/austinp0573/heroku-cowsay0' target='_blank'>Project Repository</a>
         <br><br>
         <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
         <br><br>

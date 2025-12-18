@@ -85,3 +85,23 @@ git add .
 git commit -m "message describing the update"
 git push heroku <whatever branch you use>
 ```
+
+## 7. Enable automatic deploys from GitHub
+
+The repository can be added to GitHub, after doing so, in the Heroku Dashboard you can configure it to automatically redeploy based on changes push to your GitHub Repository
+
+You can set this up entirely in the Heroku web dashboard. This is the standard "Set it and forget it" method.
+
+### Steps to Enable Automatic Deploys
+
+1. Log in to your **Heroku Dashboard**.
+2. Click on your **App**.
+3. Go to the **Deploy** tab (top menu).
+4. Under "Deployment method," select **GitHub**.
+5. Click the **Connect to GitHub** button (you may need to authorize Heroku).
+6. **Search** for your repository name and click **Connect**.
+7. Scroll down to the "Automatic deploys" section and click **Enable Automatic Deploys**.
+
+### Optional: Run Your First Deploy Now
+
+If there has been a change to the Project since you're last push to `heroku`, enabling this **will not** cause Heroku to recognize that there was a change relative to what is currently running on the service and do an automatic deploy as enabled above, if you want that to happen, just go down right below the Section to Enable Automatic Deploys and click the `Deploy Branch` button (ensuring that the desired branch is the one selected)
