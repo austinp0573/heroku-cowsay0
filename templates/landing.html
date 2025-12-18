@@ -86,5 +86,28 @@
         <br><br>
         <input type="submit" value="Say!">
     </form>
+    <script>
+        window.addEventListener('load', function() {
+            const savedCharacter = localStorage.getItem('lastCharacter');
+            const savedMessage = localStorage.getItem('lastMessage');
+            
+            if (savedCharacter) {
+                const selectElement = document.getElementById('character');
+                selectElement.value = savedCharacter;
+            }
+            
+            if (savedMessage) {
+                document.getElementById('message').value = savedMessage;
+            }
+        });
+
+        document.querySelector('form').addEventListener('submit', function() {
+            const character = document.getElementById('character').value;
+            const message = document.getElementById('message').value;
+            
+            localStorage.setItem('lastCharacter', character);
+            localStorage.setItem('lastMessage', message);
+        });
+    </script>
 </body>
 </html>
