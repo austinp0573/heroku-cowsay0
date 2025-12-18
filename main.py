@@ -13,74 +13,35 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import PlainTextResponse, HTMLResponse, RedirectResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import RedirectResponse
+from fastapi.templating import Jinja2Templates
 import cowsay as cs
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
-@app.get("/", include_in_schema=False)
-def root():
-    return RedirectResponse(url="/landing")
+@app.get("/")
+def landing(request: Request):
+    char_list = cs.list_cows()
+    return templates.TemplateResponse("landing.html", {
+        "request": request,
+        "characters": char_list
+    })
 
-@app.get("/", response_class=PlainTextResponse)
-def welcome():
-    return "Welcome to CaaS (Cowsay as a Service). Try /cowsay?message=Hello"
-
-from fastapi.responses import HTMLResponse
-
-@app.get("/cowsay", response_class=HTMLResponse)
-def draw_cow(message: str = "Moo", character: str = "default"):
+@app.get("/cowsay")
+def draw_cow(request: Request, message: str = "Moo", character: str = "default"):
     char_list = cs.list_cows()
     if character not in char_list:
-        return HTMLResponse(
-            f"<p>Character not found. Try: {', '.join(char_list)}</p>"
-            '<a href="/landing"><button>Back to landing</button></a>',
-            status_code=404,
-        )
+        return templates.TemplateResponse("character_not_found.html", {
+            "request": request,
+            "available_characters": ", ".join(char_list)
+        }, status_code=404)
+    
     output = cs.cowsay(message, cow=character)
-    return f"""
-    <html>
-      <body>
-        <pre id="cowsay-output">{output}</pre>
-        <button onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
-        <br><br>
-        <a href="/landing"><button>GO BACK and MAKE A NEW ONE</button></a><br>
-        <br><br>
-        <a href='https://github.com/austinp0573/heroku-cowsay0' target='_blank'>Project Repository</a>
-        <br><br>
-        <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
-        <br><br>
-        466f724a616e6574
-        <script>
-        function copyToClipboard() {{
-            const text = document.getElementById('cowsay-output').innerText;
-            navigator.clipboard.writeText(text);
-        }}
-        </script>
-      </body>
-    </html>
-    """
-
-@app.get("/landing", response_class=HTMLResponse)
-def landing():
-    char_list = cs.list_cows()
-    options = "".join([f'<option value="{c}">{c}</option>' for c in char_list])
-    return f"""
-    <html>
-      <body>
-        <h1>Cowsay as a Service</h1>
-        <form action="/cowsay" method="get">
-          <label for="character">Character:</label>
-          <select name="character" id="character">
-            {options}
-          </select>
-          <br><br>
-          <label for="message">Message:</label>
-          <input type="text" id="message" name="message" value="Hello!">
-          <br><br>
-          <input type="submit" value="Say!">
-        </form>
-      </body>
-    </html>
-    """
+    return templates.TemplateResponse("cowsay.html", {
+        "request": request,
+        "output": output,
+        "message": message,
+        "character": character
+    })

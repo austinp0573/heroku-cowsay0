@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cowsay as a Service</title>
+</head>
+<body>
+    <h1>Cowsay as a Service</h1>
+    <form action="/cowsay" method="get">
+        <label for="character">Character:</label>
+        <select name="character" id="character">
+            {% for cow in characters %}
+            <option value="{{ cow }}">{{ cow }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" value="Hello!">
+        <br><br>
+        <input type="submit" value="Say!">
+    </form>
+</body>
+</html>
+

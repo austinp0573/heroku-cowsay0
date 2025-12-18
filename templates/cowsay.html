@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ character }} says {{ message }}</title>
+</head>
+<body>
+    <pre id="cowsay-output">{{ output }}</pre>
+    <button onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
+    <br><br>
+    <a href="/"><button>GO BACK and MAKE A NEW ONE</button></a><br>
+    <br><br>
+    <a href='https://github.com/austinp0573/heroku-cowsay0' target='_blank'>Project Repository</a>
+    <br><br>
+    <a href='https://github.com/austinp0573' target='_blank'>My GitHub</a>
+    <br><br>
+    466f724a616e6574
+    <script>
+    function copyToClipboard() {
+        const text = document.getElementById('cowsay-output').innerText;
+        navigator.clipboard.writeText(text);
+    }
+    </script>
+</body>
+</html>
+

@@ -19,7 +19,7 @@ Cowsay as a Service (CaaS) is a simple FastAPI web app that lets you generate co
    uvicorn main:app --reload
    ```
 3. Open your browser and go to:
-   [http://localhost:8000/landing](http://localhost:8000/landing)
+   [http://localhost:8000/](http://localhost:8000/)
 
 ## Deploying to Heroku
 See `DEPLOY.md` for step-by-step instructions to deploy this app to Heroku and set up a custom domain.
