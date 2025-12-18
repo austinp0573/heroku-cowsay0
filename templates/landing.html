@@ -77,7 +77,7 @@
         <label for="character">Character:</label>
         <select name="character" id="character">
             {% for cow in characters %}
-            <option value="{{ cow }}">{{ cow }}</option>
+            <option value="{{ cow }}" {% if cow == 'stegosaurus' %}selected{% endif %}>{{ cow }}</option>
             {% endfor %}
         </select>
         <br><br>
